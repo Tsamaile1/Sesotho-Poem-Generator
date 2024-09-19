@@ -3,27 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
     <title>Sesotho se monate</title>
     <style>
-      body{
+      body {
         background-image: url(https://www.shutterstock.com/image-vector/shweshwe-african-seamless-pattern-repeating-260nw-2397532643.jpg);
-        background-size:auto;
+        background-size: auto;
       }
-      h1{
+      h1 {
         text-align: center;
         font-size: 40px;
         margin-top: 50px;
         font-family: "Roboto", sans-serif;
         font-weight: 700;
         font-style: normal;
-        
       }
       .content {
-        
-        padding:30px;
+        padding: 30px;
         display: block;
         margin: 120px auto;
         height: 400px;
@@ -33,32 +35,28 @@
         font-style: normal;
         background-color: white;
         border-radius: 20px;
-       
-            }
-      .type{
+      }
+      .type {
         width: 400px;
         border: none;
         height: 30px;
         border: none;
         border-radius: 10px;
-        background-color: #CAF2A6;
+        background-color: #caf2a6;
+        margin-bottom: 30px;
       }
-      .submit{
+      .submit {
         height: 30px;
         border-radius: 10px;
         border: none;
-        background-color: #1AA439;
+        background-color: #1aa439;
       }
     </style>
   </head>
   <body>
-   
-   
-    
-
     <div class="content">
       <h1><strong>Sesotho Poem Generator</strong></h1>
-      <form action="">
+      <form action="" id="poem-generator">
         <input
           class="type"
           type="text"
@@ -69,37 +67,46 @@
         />
         <input type="submit" name="" id="" class="submit" />
       </form>
-      <div class="written">
-        <br>
-        <br>
-
-        <br />
-        Dumela
-        <br />
-        Re teng lekae
-      </div>
+      <div class="written" id="outcome-text"></div>
 
       <br />
       <br />
       <br />
       <footer>
-        <strong>This AI project was coded by
-        <a href="https://github.com/Tsamaile1/" target="_blank"
-          >Tsamaile Lebitsa</a
-        >. It is open-sourced on
-        <a
-          href="https://github.com/Tsamaile1/Sesotho-Poem-Generator/blob/main/index.html"
-          target="_blank"
-          >Git-hub</a
-        >
-        and hosted on
-        <a
-          href="https://sesotho-ai.netlify.app/"
-          target="
+        <strong
+          >This AI project was coded by
+          <a href="https://github.com/Tsamaile1/" target="_blank"
+            >Tsamaile Lebitsa</a
+          >. It is open-sourced on
+          <a
+            href="https://github.com/Tsamaile1/Sesotho-Poem-Generator/blob/main/index.html"
+            target="_blank"
+            >Git-hub</a
+          >
+          and hosted on
+          <a
+            href="https://sesotho-ai.netlify.app/"
+            target="
         "
-          >Netlify</a
-        ></strong>
+            >Netlify</a
+          ></strong
+        >
       </footer>
     </div>
+    <script>
+      function generatePoem(event) {
+        event.preventDefault();
+
+        new Typewriter("#outcome-text", {
+          strings: "Generating an awesome poem for you...",
+          autoStart: true,
+          delay: 30,
+          cursor: " ",
+        });
+      }
+
+      let generatorElement = document.querySelector("#poem-generator");
+      generatorElement.addEventListener("submit", generatePoem);
+    </script>
   </body>
 </html>
