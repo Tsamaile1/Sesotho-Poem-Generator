@@ -10,6 +10,7 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Sesotho se monate</title>
     <style>
       body {
@@ -56,7 +57,7 @@
   <body>
     <div class="content">
       <h1><strong>Sesotho Poem Generator</strong></h1>
-      <form action="" id="poem-generator">
+      <form action="" id="generator-form">
         <input
           class="type"
           type="text"
@@ -64,8 +65,9 @@
           autofocus
           required
           autocomplete="off"
+          id="poem-generator"
         />
-        <input type="submit" name="" id="" class="submit" />
+        <input type="submit" name="" id="submit-button" class="submit" />
       </form>
       <div class="written" id="outcome-text"></div>
 
@@ -94,18 +96,31 @@
       </footer>
     </div>
     <script>
-      function generatePoem(event) {
-        event.preventDefault();
+
+      function displayPoem(response) {
+       
 
         new Typewriter("#outcome-text", {
-          strings: "Generating an awesome poem for you...",
-          autoStart: true,
-          delay: 30,
-          cursor: " ",
-        });
+        strings: response.data.answer,
+        autoStart: true,
+        cursor: " ",
+        delay: 30
+});
+        
       }
-
-      let generatorElement = document.querySelector("#poem-generator");
+      function generatePoem(event) {
+        event.preventDefault();
+       let instructionElement= document.querySelector("#poem-generator");
+       let apiKey= "bacodabffe100ecf22f2d099t74223bc";
+       let context = `Youre a creative AI assistant with a passion for creative writing. Write a poem of 4 lines in Southern Sotho language.break each line with a <br> and sign Tsamaile AI in <strong> after a <br><br>at the end of the poem`;
+       let prompt = `User instructions: generate an Southern Sotho poem the words in the ${instructionElement.value}`;
+       let apiUrl= `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apiKey}`;
+       
+       let jokeElement=document.querySelector("#outcome-text");
+       jokeElement.innerHTML = "<strong>Hata bolo oje panana Letebele😂, re o ngolla thothokiso ya hao😃....</strong>"
+       axios.get(apiUrl).then(displayPoem);
+        }
+      let generatorElement = document.querySelector("#generator-form");
       generatorElement.addEventListener("submit", generatePoem);
     </script>
   </body>
